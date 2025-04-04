@@ -4,8 +4,8 @@ A portfolio single page application using React and Material UI
 
 # Execution Flow
 ```
-git https://github.com/krishnamaram3/portfolio.git cd portfolio/reactjs
-npm insall
+git clone https://github.com/krishnamaram3/portfolio.git && cd portfolio/reactjs
+npm install
 npm start
 http://localhost:3000/
 ```
