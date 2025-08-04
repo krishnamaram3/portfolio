@@ -1,7 +1,7 @@
 # Portfolio
 This project is intended to develop Portfolio app to show case my skills.
 
-#Tech Stack
+# Tech Stack
 Front End: HTML, CSS, Javacript, ReactJS
 
 Back End: NodeJS, ExpressJS
@@ -20,13 +20,13 @@ http://localhost:3000/
 # ExpressJS
 
 # MongoDB
-*MongoDB Server and MongoDB Client Setup and set in system environment variable
+* MongoDB Server and MongoDB Client Setup and set in system environment variable
 
 MongoDB Sever: https://www.mongodb.com/try/download/community
 
 MongoDB Client: https://www.mongodb.com/try/download/shell?jmp=docs
 
-*Test on cmd
+* Test on cmd
 ```
 mongod --version
 mongosh --version
