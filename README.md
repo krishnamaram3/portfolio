@@ -22,9 +22,9 @@ http://localhost:3000/
 # MongoDB
 * MongoDB Server and MongoDB Client Setup and set in system environment variable
 
-MongoDB Sever: https://www.mongodb.com/try/download/community
-
-MongoDB Client: https://www.mongodb.com/try/download/shell?jmp=docs
+  MongoDB Sever: https://www.mongodb.com/try/download/community
+  
+  MongoDB Client: https://www.mongodb.com/try/download/shell?jmp=docs
 
 * Test on cmd
 ```
