@@ -35,6 +35,7 @@ db.skills.insertOne({
 db.skills.find()
 ```
 * Update document
+```
 db.skills.updateOne({ name: 'mongodb' }, { $set: { name: 'mysql' } }
 )
 ```
