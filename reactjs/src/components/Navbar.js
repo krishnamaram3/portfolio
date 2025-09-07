@@ -54,6 +54,7 @@ const menuItems = [
   { listIcon: <AssignmentInd />, listText: "Resume", listPath: "/resume" },
   { listIcon: <Apps />, listText: "Portfolio", listPath: "/portfolio" },
   { listIcon: <ContactMail />, listText: "Contact", listPath: "/contact" },
+  { listIcon: <Apps />, listText: "Skills", listPath: "/skills" }, // Add Skills route
 ];
 
 const Navbar = () => {
