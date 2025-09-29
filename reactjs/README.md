@@ -12,3 +12,7 @@ npm install react-scripts
 npm start
 http://localhost:3000/
 ```
+
+# To deploy in GitHub pages
+add in package.json
+"homepage": "https://krishnamaram3.github.io/portfolio",
