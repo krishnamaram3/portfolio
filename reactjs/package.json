@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://krishnamaram3.github.io/portfolio",
+  "homepage": "https://krishnamaram3.github.io/portfolio/reactjs",
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
@@ -42,4 +42,5 @@
     ]
   }
 }
+
 
