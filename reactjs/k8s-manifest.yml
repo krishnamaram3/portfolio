@@ -18,7 +18,8 @@ spec:
       containers:
       - name: portfolio-reactjs
         image: portfolio-image:latest
-        imagePullPolicy: Always
+        # imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent # to pull image locally
         ports:
         - containerPort: 80
         securityContext: {}
