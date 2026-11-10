@@ -24,25 +24,13 @@ sudo mysql_secure_installation
 ```
 sudo mysql -u root
 ```
-* Step 4: create database with name hacathon and Create a dedicated MySQL user and granting privilges
+* Step 4: create database with name portfolio and Create a dedicated MySQL user and granting privilges
 ```
 CREATE DATABASE portfolio;
 CREATE USER 'cloud'@'%' IDENTIFIED WITH mysql_native_password BY 'Cloud@123';
 GRANT ALL ON *.* TO 'cloud'@'%';
 FLUSH PRIVILEGES;
-exit
 ```
-# Import and Export database
-```
-git clone https://github.com/csit-robots/csp-dev.git && cd csp-dev/portfolio/sql
-Import : sudo mysql -u cloud -p portfolio < portfolio_dump.sql
-Export: mysqldump -u cloud -p portfolio > portfolio_dump.sql
-```
-# Reference
-https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-22-04
-
-
-
 * Step 5: Create table and perform CRUD operations
 ```
 CREATE TABLE portfolio.skills(
@@ -53,4 +41,6 @@ CREATE TABLE portfolio.skills(
 ```
 ```				
 INSERT INTO portfolio.skills (name, stream) VALUES ('aws', 'operations');
+INSERT INTO portfolio.skills (name, stream) VALUES ('azure', 'operations');
+INSERT INTO portfolio.skills (name, stream) VALUES ('gcp', 'operations');
 ```
