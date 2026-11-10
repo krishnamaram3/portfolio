@@ -45,6 +45,6 @@ INSERT INTO portfolio.skills (name, stream) VALUES ('azure', 'operations');
 INSERT INTO portfolio.skills (name, stream) VALUES ('gcp', 'operations');
 ```
 * Step 6: Testing
-'''
+```
 select * from portfolio.skills;
-'''
+```
