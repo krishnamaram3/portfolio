@@ -1,8 +1,7 @@
 # FastAPI portfolio backend
 
-The backend supports MySQL and PostgreSQL. Before starting the API, create the
-database and `skills` table using the [MySQL setup](../sql/MySQL_README.md) or
-[PostgreSQL setup](../sql/README.md). Switching databases does not migrate data.
+The backend uses PostgreSQL. Before starting the API, create the database and
+`skills` table using the [PostgreSQL setup](../sql/README.md).
 
 # Execution Flow
 * Step 1: Clone repo
@@ -17,17 +16,16 @@ pip3 install -r requirements.txt --break-system-packages
 sudo pip3 install "fastapi[standard]" --break-system-packages
 sudo pip3 install uvicorn --break-system-packages
 ```
-* Step 3: Export database connection settings. Set `DB` to `MySQL` or
-  `PostgreSQL`; it defaults to `MySQL` when omitted. `DB_NAME` defaults to
-  `portfolio`, and `DB_PORT` defaults to `3306` for MySQL or `5432` for
-  PostgreSQL. Use the credentials created during database setup; do not commit
-  real passwords.
+* Step 3: Export database connection settings. `DB` is optional and, if set,
+  must be `PostgreSQL`. `DB_NAME` and `DB_PORT` default to `portfolio` and
+  `5432`, respectively. Use the credentials created during database setup;
+  do not commit real passwords.
 ```bash
-export DB="PostgreSQL"  # Use "MySQL" for MySQL
+export DB="PostgreSQL"
 export DB_SERVER="localhost"
 export DB_NAME="portfolio"
 export DB_USR="cloud"
-export DB_PWD="Cloud@123"
+export DB_PWD="<database password>"
 # Optional: export DB_PORT="5432"
 ```
 * Step 4: To run the server
