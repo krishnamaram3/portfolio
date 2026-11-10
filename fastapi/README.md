@@ -29,33 +29,3 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 http://127.0.0.1:8000/portfolio/api/docs
 http://127.0.0.1:8000/portfolio/api/openapi.json
 ```
-
-# Containerize
-* Build Image, Tag and Push to DockerHub and  ECR 
-   ```
-   docker login
-
-   docker build -t csp-portfolio-fastapi .
-
-   docker tag csp-portfolio-fastapi:latest krishnamaram2/csp-portfolio-fastapi:latest
-
-   docker push krishnamaram2/csp-portfolio-fastapi:latest
-   ```
-   ```
-   docker build -t csp-portfolio-fastapi .
-
-   aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 865366202861.dkr.ecr.eu-west-2.amazonaws.com
-
-   docker tag csp-portfolio-fastapi:latest 865366202861.dkr.ecr.eu-west-2.amazonaws.com/csp-portfolio-fastapi:latest
-
-   docker push 865366202861.dkr.ecr.eu-west-2.amazonaws.com/csp-portfolio-fastapi:latest
-   ```
-
-* Run container on Local
-   ```
-   docker run -d -p 80:80 --name csp-portfolio-fastapi csp-portfolio-fastapi
-
-   docker logs -f csp-portfolio-fastapi
-
-   docker exec -it csp-portfolio-fastapi /bin/sh
-   ``
