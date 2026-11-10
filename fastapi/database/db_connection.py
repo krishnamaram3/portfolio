@@ -1,29 +1,32 @@
-import mysql.connector
-import datetime
-import time
 import os
+from contextlib import closing, contextmanager
 
-class DBConnection:
-    def __init__(self):
-        self._db_con = None
-        self._db_session = None
+import mysql.connector
+import psycopg
 
-    def mysql_connect(self):
-       self.__enter__()
 
-    def __enter__(self):
-        self._db_con = mysql.connector.connect(
-        host=os.environ['DB_SERVER'],
-        user=os.environ['DB_USR'],
-        password=os.environ['DB_PWD'])
-        self._db_session = self._db_con.cursor()
-        return self._db_session
-    
-    def mysql_close(self):
-        self.__exit__()
+@contextmanager
+def db_connection():
+    database_type = os.environ.get("DB", "MySQL").strip().lower()
+    if database_type not in ("mysql", "postgresql"):
+        raise ValueError("DB must be MySQL or PostgreSQL")
 
-    def __exit__(self, exception_type=None, exception_value=None, traceback=None):
-        if self._db_session:
-            self._db_session.close()
-        if self._db_con:
-            self._db_con.close()
+    settings = {
+        "host": os.environ["DB_SERVER"],
+        "port": os.environ.get("DB_PORT", "3306" if database_type == "mysql" else "5432"),
+        "user": os.environ["DB_USR"],
+        "password": os.environ["DB_PWD"],
+    }
+    database_name = os.environ.get("DB_NAME", "portfolio")
+    if database_type == "mysql":
+        connection = mysql.connector.connect(database=database_name, **settings)
+    else:
+        connection = psycopg.connect(dbname=database_name, **settings)
+
+    with closing(connection):
+        try:
+            yield connection
+            connection.commit()
+        except Exception:
+            connection.rollback()
+            raise

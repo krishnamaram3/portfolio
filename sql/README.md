@@ -76,7 +76,7 @@ sudo ufw allow 5432/tcp
 
 * Step 7: Connect and test
 ```
-psql -h <server-ip> -U cloud -d portfolio
+psql -h localhost -U cloud -d portfolio
 \l      -- list databases
 \dt     -- list tables
 SELECT * FROM skills;
