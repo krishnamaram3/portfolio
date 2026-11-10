@@ -4,7 +4,7 @@ This project is intended to touch and feel FastAPI framework.
 # Execution Flow
 * Step 1: Clone repo
 ```
-git clone https://github.com/csit-robots/csp-dev.git && cd csp-dev/portfolio/fastapi
+git clone https://github.com/krishnamaram3/portfolio.git && cd portfolio/fastapi
 ```
 * Step 2: Install dependencies
 ```
