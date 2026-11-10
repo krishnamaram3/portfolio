@@ -1,50 +1,81 @@
 # Title
 This project is intended to touch and feel SQL.
 
-# MySQL server setup on Ubuntu
+# PostgreSQL server setup on Ubuntu
 * Step 0: clone
 ```
 git clone https://github.com/krishnamaram3/portfolio.git && cd portfolio/sql
 ```
 
-* Step 1: Installing MySQL
+* Step 1: Install PostgreSQL
 ```
 sudo apt update
-sudo apt install mysql-server -y
-sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
-changed to bind-address = 0.0.0.0
-sudo systemctl restart mysql
-sudo systemctl status mysql
+sudo apt install postgresql postgresql-contrib -y
 ```
-* Step 2: Configuring MySQL
+
+* Step 2: Verify the service is running
 ```
-sudo mysql_secure_installation
+sudo systemctl enable postgresql
+sudo systemctl status postgresql
+psql --version
 ```
-* Step 3: Login to MySQL server
+
+* Step 3: Log in as the postgres user
 ```
-sudo mysql -u root
+sudo -i -u postgres
+psql
 ```
-* Step 4: create database with name portfolio and Create a dedicated MySQL user and granting privilges
+
+* Step 4: Set a password for the postgres user
+```
+ALTER USER postgres WITH PASSWORD 'your_password';
+```
+
+* Step 5: Create a database and a user
 ```
 CREATE DATABASE portfolio;
-CREATE USER 'cloud'@'%' IDENTIFIED WITH mysql_native_password BY 'Cloud@123';
-GRANT ALL ON *.* TO 'cloud'@'%';
-FLUSH PRIVILEGES;
+CREATE USER myuser WITH ENCRYPTED PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE portfolio TO myuser;
+\c portfolio
+GRANT ALL ON SCHEMA public TO myuser;
+\q
+exit
 ```
-* Step 5: Create table and perform CRUD operations
+
+* Step 5.1: Create the skills table
 ```
-CREATE TABLE portfolio.skills(
-    id INT AUTO_INCREMENT PRIMARY KEY,
+psql -h localhost -U myuser -d portfolio
+```
+```
+CREATE TABLE skills (
+    id SERIAL PRIMARY KEY,
     name VARCHAR(25),
     stream VARCHAR(25)
 );
+
+INSERT INTO skills (name, stream) VALUES ('aws', 'operations');
+INSERT INTO skills (name, stream) VALUES ('azure', 'operations');
+INSERT INTO skills (name, stream) VALUES ('gcp', 'operations');
+
+SELECT * FROM skills;
 ```
-```				
-INSERT INTO portfolio.skills (name, stream) VALUES ('aws', 'operations');
-INSERT INTO portfolio.skills (name, stream) VALUES ('azure', 'operations');
-INSERT INTO portfolio.skills (name, stream) VALUES ('gcp', 'operations');
+
+* Step 6: Allow remote connections (optional)
 ```
-* Step 6: Testing
+sudo vi /etc/postgresql/<version>/main/postgresql.conf
+# change to: listen_addresses = '*'
+
+sudo vi /etc/postgresql/<version>/main/pg_hba.conf
+# add: host    all    all    0.0.0.0/0    scram-sha-256
+
+sudo systemctl restart postgresql
+sudo ufw allow 5432/tcp
 ```
-select * from portfolio.skills;
+
+* Step 7: Connect and test
+```
+psql -h <server-ip> -U myuser -d portfolio
+\l      -- list databases
+\dt     -- list tables
+SELECT * FROM skills;
 ```
