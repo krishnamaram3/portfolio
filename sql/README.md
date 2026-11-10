@@ -2,6 +2,11 @@
 This project is intended to touch and feel SQL.
 
 # MySQL server setup on Ubuntu
+* Step 0: clone
+```
+git clone https://github.com/krishnamaram3/portfolio.git && cd portfolio/sql
+```
+
 * Step 1: Installing MySQL
 ```
 sudo apt update
